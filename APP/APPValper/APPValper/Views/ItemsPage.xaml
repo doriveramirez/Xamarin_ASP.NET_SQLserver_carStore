@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="APPValper.Views.ItemsPage"
+             Title="{Binding Title}"
+             x:Name="BrowseItemsPage"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             BarBackgroundColor="#2196F3"
+             BarTextColor="White"
+             android:TabbedPage.BarItemColor="#66FFFFFF"
+             android:TabbedPage.BarSelectedItemColor="White">
+
+    <ContentPage Title="{Binding TitleHome}" IconImageSource="home.png" >
+        <Grid>
+
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="#1E90FF" Opacity="0.8" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="1" Padding="15,20">
+                    <Button Command="{Binding CRUDCommand}" Text="{Binding ButtonCRUDText}" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
+                    <Button Command="{Binding ChangeUserCommand}" Text="{Binding ButtonLoginText}" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
+                </StackLayout>
+
+                <Frame Grid.Row="2" BackgroundColor="#1E90FF" BorderColor="WhiteSmoke" HasShadow="True" CornerRadius="10" Margin="10,10,10,10" Padding="0" VerticalOptions="Start">
+                    <StackLayout Padding="45,30">
+                        <Label Text="{Binding LabelTitle}" HorizontalOptions="Center" FontAttributes="Bold" TextColor="White" FontSize="20" />
+                        <Label Text="{Binding LabelDescription}" HorizontalOptions="Center" TextColor="White" FontSize="15" />
+                    </StackLayout>
+                </Frame>
+
+                <StackLayout Grid.Row="3" Padding="15,10">
+                    <Button Command="{Binding HelpCommand}" Text="{Binding ButtonHelpText}" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="4" Padding="15,10">
+                    <Button Command="{Binding ExitCommand}" Text="{Binding ButtonExitText}" BackgroundColor="white" BorderRadius="20" TextColor="#1E90FF" />
+                </StackLayout>
+
+
+            </Grid>
+        </Grid>
+    </ContentPage>
+
+    <ContentPage Title="{Binding TitleSettings}" IconImageSource="settings.png">
+        <Grid>
+
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="#1E90FF" Opacity="0.8" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackLayout Padding="50,20,0,0">
+                    <Label Text="Elija un idioma" TextColor="White" FontSize="20"/>
+
+                </StackLayout>
+
+
+                <Grid Grid.Row="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <StackLayout Grid.Column="0" Padding="40,30,0,0">
+                        <Frame CornerRadius="100" 
+                    HeightRequest="50"
+                    WidthRequest="50"
+                    HorizontalOptions="Start"
+                    Padding="26"
+                    IsClippedToBounds="True">
+                            <Image Source="espanol.png" 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Aspect="AspectFill"/>
+                        </Frame>
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SpanishCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Padding="0,30,40,0" >
+                        <Frame CornerRadius="100" 
+                    HeightRequest="50"
+                    WidthRequest="50"
+                    HorizontalOptions="End"
+                    Padding="26"
+                    IsClippedToBounds="True">
+                            <Image Source="ingles.png" 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                        </Frame>
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding EnglishCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="1" Padding="30,50">
+                        <Entry Text="{Binding Url}" Placeholder="{Binding UrlText}" PlaceholderColor="White" HorizontalOptions="Start" />
+                        <StackLayout Orientation="Horizontal" >
+                            <Image Source="check.png" HeightRequest="50" HorizontalOptions="End"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SaveCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentPage>
+
+</TabbedPage>

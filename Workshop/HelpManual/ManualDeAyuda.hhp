@@ -1,0 +1,19 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=ManualDeAyuda.chm
+Contents file=Table of Contents.hhc
+Default topic=..\1.html
+Display compile progress=No
+Index file=Index.hhk
+Language=0xc0a Español (España, internacional)
+
+
+[FILES]
+..\1.html
+..\2.html
+..\5.html
+..\3.html
+..\4.html
+
+[INFOTYPES]
+

@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="APPValper.Views.Functions">
+
+    <ContentPage Title="{Binding BrandTitle}">
+
+        <Grid>
+
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="#1E90FF" Opacity="0.8" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="1" Padding="30,20">
+                    <Entry Text="{Binding Name}" Placeholder="{Binding BrandNameText}" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Headquarters}" Placeholder="{Binding HeadquartersText}" PlaceholderColor="White" />
+                    <Entry Text="{Binding Founder}" Placeholder="{Binding FounderText}" PlaceholderColor="White" />
+
+                </StackLayout>
+
+                <Frame Grid.Row="2" HasShadow="True" CornerRadius="10" Margin="20,0,20,0" Padding="0" HeightRequest="120" VerticalOptions="Start" >
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="save.png" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding SaveText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SaveBrandCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="modify.png" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding ModifyText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ModifyBrandCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="delete.png" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding DeleteText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DeleteBrandCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="clear.png" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding ClearText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CleanBrandCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <Label Text="{Binding IDBrand}" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
+
+                <ListView x:Name="LvBrands" ItemsSource="{Binding Brands}" SeparatorVisibility="None"
+                  Grid.Row="3" Margin="20,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <ViewCell>
+                                <Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="5" Margin="0,0,0,5" HasShadow="False">
+                                    <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                        <Label Text="{Binding Name}" TextColor="#757575" FontSize="25" VerticalOptions="Center" Margin="0,-5,0,0"/>
+                                        <Label Grid.Column="1" Text="{Binding Headquarters}" TextColor="White" FontSize="25" VerticalOptions="Center" Margin="5,-5,0,0"/>
+                                        <StackLayout Grid.Column="2" Orientation="Horizontal" Margin="20,0" HorizontalOptions="End" VerticalOptions="Center">
+                                            <Label Text="{Binding Founder}" TextColor="Black" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </Grid>
+        </Grid>
+
+    </ContentPage>
+
+
+    <ContentPage Title="{Binding ModelTitle}">
+
+        <Grid>
+
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="#1E90FF" Opacity="0.8" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="1" Padding="30,20">
+                    <!--<Picker SelectedIndex="{Binding BrandPicker}" Title="{Binding BrandPickerText}"/>-->
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Select an ID pressing the button" TextColor="White" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                        <Button Command="{Binding ChangeBrandIDCommand}" HeightRequest="10" WidthRequest="30"/>
+                        <Entry Placeholder="BrandID" Text="{Binding BrandID}" PlaceholderColor="WhiteSmoke" TextColor="White" FontSize="16" HorizontalOptions="Center"/>
+                    </StackLayout>
+                    <Entry Text="{Binding Model}" Placeholder="{Binding ModelNameText}" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Power}" Placeholder="{Binding PowerText}" PlaceholderColor="White" />
+                    <Entry Text="{Binding Color}" Placeholder="{Binding ColorText}" PlaceholderColor="White" />
+                    <Entry Text="{Binding Ndoor}" Placeholder="{Binding DoorsText}" PlaceholderColor="White" />
+                </StackLayout>
+                <Frame Grid.Row="2" HasShadow="True" CornerRadius="10" Margin="20,0,20,0" Padding="0" HeightRequest="120" VerticalOptions="Start" >
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="save.png" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding SaveText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SaveCarCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="modify.png" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding ModifyText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ModifyCarCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="delete.png" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding DeleteText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DeleteCarCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image Source="clear.png" HeightRequest="25" HorizontalOptions="Center"/>
+                            <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                                <Label Text="{Binding ClearText}" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                            </StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CleanCarCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <Label Text="{Binding IDCar}" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
+
+                <ListView x:Name="LvCars" ItemsSource="{Binding Cars}" SeparatorVisibility="None"
+                  Grid.Row="3" Margin="20,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <ViewCell>
+                                <Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="5" Margin="0,0,0,5" HasShadow="False">
+                                    <Grid HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                        <Label Text="{Binding Model}" TextColor="#757575" FontSize="25" VerticalOptions="Center" Margin="0,-5,0,0"/>
+                                        <Image Grid.Column="1" Source="{Binding Power}" WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <StackLayout Grid.Column="2" Orientation="Horizontal" Margin="20,0" HorizontalOptions="End" VerticalOptions="Center">
+                                            <Label Text="{Binding Color}" TextColor="Black" FontSize="20" FontAttributes="Bold" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </Grid>
+        </Grid>
+
+    </ContentPage>
+
+
+</TabbedPage>

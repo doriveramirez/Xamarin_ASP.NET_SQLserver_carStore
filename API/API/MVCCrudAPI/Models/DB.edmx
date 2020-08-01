@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ValperModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Funciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="Servidor" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Accion" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="NombreCompleto" Type="nvarchar" MaxLength="100" />
+          <Property Name="Imagen" Type="varbinary(max)" />
+          <Property Name="Permisos" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios_Funciones">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+            <PropertyRef Name="idFuncion" />
+          </Key>
+          <Property Name="IdUsuario" Type="nchar" MaxLength="36" Nullable="false" />
+          <Property Name="idFuncion" Type="nchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Table_1_Funciones">
+          <End Role="Funciones" Type="Self.Funciones" Multiplicity="1" />
+          <End Role="Usuarios_Funciones" Type="Self.Usuarios_Funciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funciones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuarios_Funciones">
+              <PropertyRef Name="idFuncion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_1_Table_1">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Usuarios_Funciones" Type="Self.Usuarios_Funciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuarios_Funciones">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ValperModelStoreContainer">
+          <EntitySet Name="Funciones" EntityType="Self.Funciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios_Funciones" EntityType="Self.Usuarios_Funciones" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Table_1_Funciones" Association="Self.FK_Table_1_Funciones">
+            <End Role="Funciones" EntitySet="Funciones" />
+            <End Role="Usuarios_Funciones" EntitySet="Usuarios_Funciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_1_Table_1" Association="Self.FK_Table_1_Table_1">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Usuarios_Funciones" EntitySet="Usuarios_Funciones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ValperModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Funciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Servidor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Accion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.Usuarios_Funciones" FromRole="Funciones" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="36" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NombreCompleto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Permisos" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Funciones" Relationship="Self.Usuarios_Funciones" FromRole="Usuarios" ToRole="Funciones" />
+        </EntityType>
+        <Association Name="Usuarios_Funciones">
+          <End Role="Funciones" Type="Self.Funciones" Multiplicity="*" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ValperEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Funciones" EntityType="Self.Funciones" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="Usuarios_Funciones" Association="Self.Usuarios_Funciones">
+            <End Role="Funciones" EntitySet="Funciones" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ValperModelStoreContainer" CdmEntityContainer="ValperEntities">
+          <EntitySetMapping Name="Funciones">
+            <EntityTypeMapping TypeName="ValperModel.Funciones">
+              <MappingFragment StoreEntitySet="Funciones">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Servidor" ColumnName="Servidor" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="ValperModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Permisos" ColumnName="Permisos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Usuarios_Funciones" TypeName="ValperModel.Usuarios_Funciones" StoreEntitySet="Usuarios_Funciones">
+            <EndProperty Name="Funciones">
+              <ScalarProperty Name="Id" ColumnName="idFuncion" />
+            </EndProperty>
+            <EndProperty Name="Usuarios">
+              <ScalarProperty Name="Id" ColumnName="IdUsuario" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

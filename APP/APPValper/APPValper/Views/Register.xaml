@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="APPValper.Views.Register">
+    <ContentPage.Content>
+
+        <Grid>
+
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="#1E90FF" Opacity="0.8" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackLayout Padding="40">
+                    <Frame CornerRadius="100" 
+                    HeightRequest="150"
+                    WidthRequest="150"
+                    HorizontalOptions="Center"
+                    Padding="27"
+                    IsClippedToBounds="True">
+                        <Image Source="valper.jpg" 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Padding="30,20">
+                    <Entry Text="{Binding Email}"  Placeholder="{Binding EmailText}" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Username}" Placeholder="{Binding FullNameText}" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Password}" Placeholder="{Binding PasswordText}" PlaceholderColor="White" IsPassword="True"/>
+                    <Entry Text="{Binding Password2}" Placeholder="{Binding ConfirmPasswordText}" PlaceholderColor="White" IsPassword="True"/>
+                    <Button Command="{Binding RegisterCommand}" Text="{Binding RegisterText}" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="2" Padding="30,20" >
+                    <Label Text="{Binding AdmindText}" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="White"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AdminCommand}"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+            </Grid>
+
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>

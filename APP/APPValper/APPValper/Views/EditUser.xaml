@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="APPValper.Views.EditUser"
+             Title="{Binding EditUserTittle}">
+    <ContentPage.Content>
+
+        <Grid>
+
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="#1E90FF" Opacity="0.8" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackLayout Padding="40">
+                    <Frame CornerRadius="100" 
+                    HeightRequest="150"
+                    WidthRequest="150"
+                    HorizontalOptions="Center"
+                    Padding="28"
+                    IsClippedToBounds="True">
+                        <Image Source="userIcon.png" 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                    </Frame>
+                    <Button Text="{Binding ChangeImageButtonText}" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Padding="30,5">
+                    <StackLayout Orientation="Horizontal" >
+                        <Entry Text="{Binding Name}" Placeholder="{Binding ActualNameText}" PlaceholderColor="White" HorizontalOptions="Start" />
+                        <Button Command="{Binding ChangeNameCommand}" Text="{Binding ChangeNameButtonText}" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" HorizontalOptions="EndAndExpand"/>
+
+                    </StackLayout>
+                    <Entry Text="{Binding OldPassword}" Placeholder="{Binding ActualPasswordText}" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Password}" Placeholder="{Binding NewPasswordText}" PlaceholderColor="White" IsPassword="True"/>
+                    <Entry Text="{Binding Password2}" Placeholder="{Binding ConfirmPasswordText}" PlaceholderColor="White" IsPassword="True"/>
+                    <Button Command="{Binding ChangePasswordCommand}" Text="{Binding ChangePasswordButtonText}" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
+
+                </StackLayout>
+
+            </Grid>
+
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>

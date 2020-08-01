@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="APPValper.Views.Login">
+    <ContentPage.Content>
+
+        <Grid>
+
+            <Image Source="fondo.jpg" Aspect="AspectFill" />
+            <BoxView Color="#1E90FF" Opacity="0.8" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackLayout Padding="40">
+                    <Frame CornerRadius="100" 
+                    HeightRequest="175"
+                    WidthRequest="175"
+                    HorizontalOptions="Center"
+                    Padding="26"
+                    IsClippedToBounds="True">
+                        <Image Source="valper.jpg" 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Padding="30,20">
+                    <Entry Text="{Binding Email}" Placeholder="{Binding EmailText}" PlaceholderColor="White"/>
+                    <Entry Text="{Binding Password}" Placeholder="{Binding PasswordText}" PlaceholderColor="White" IsPassword="True"/>
+                    <Button Command="{Binding LoginCommand}" Text="{Binding LoginText}" BackgroundColor="White" BorderRadius="20" TextColor="#1E90FF" />
+
+                    <StackLayout Orientation="Horizontal" Padding="30,20" >
+                        <Label Text="{Binding NewAccountText}" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="White"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </StackLayout>
+
+            </Grid>
+
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>
